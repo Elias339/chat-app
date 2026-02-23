@@ -1,0 +1,133 @@
+
+body {
+    background-color: #e5ddd5;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.chat-container {
+    height: 100vh;
+}
+
+/*sidebar*/
+
+.sidebar {
+    background-color: #ffffff;
+    border-right: 1px solid #ddd;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.contact-item {
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.contact-item:hover {
+    background-color: #f0f2f5;
+}
+
+.logout-btn {
+    transition: 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+}
+
+/*Chat Area*/
+
+.chat-area {
+    background-image: url("https://i.ibb.co/7N6k7Kq/whatsapp-bg.png");
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    background-color: #f0f2f5;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.chat-input {
+    /*background-color: #949498;*/
+    padding: 10px 15px;
+    border-top: 1px solid #ddd;
+}
+.chat-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #ffffff;
+    padding: 8px 12px;
+    border-radius: 30px;
+}
+
+.chat-text-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #000000;
+    font-size: 16px;
+    padding-left: 30px;
+}
+
+.chat-text-input::placeholder {
+    color: #8696a0;
+}
+
+.send-btn {
+    background-color: #00a884;
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: 0.2s ease;
+}
+
+.send-btn:hover {
+    background-color: #019874;
+}
+
+.message {
+    max-width: 60%;
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.message.sent {
+    background-color: #dcf8c6;
+    margin-left: auto;
+}
+
+.message.received {
+    background-color: #ffffff;
+}
+
+/*End Chat Area*/
+
+
+

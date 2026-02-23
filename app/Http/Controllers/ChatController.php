@@ -2,39 +2,50 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\SendMessage;
+use App\Models\Message;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ChatController extends Controller
 {
     public function index(){
         $users = User::where('id','!=',auth()->id())->get();
-        return view('chat.index',compact('users'));
+        return view('dashboard', compact('users'));
     }
 
-    public function sendMessage(Request $request){
+    public function sendMessage(Request $request)
+    {
         $request->validate([
-            'receiver_id'=>'required|exists:users,id',
-            'message'=>'required|string',
+            'message' => 'required',
+            'receiver_id' => 'required'
         ]);
 
-        Message::create([
-            'sender_id'=>auth()->id(),
-            'receiver_id'=>$request->receiver_id,
-            'message'=>$request->message
+        $message = Message::create([
+            'sender_id' => auth()->id(),
+            'receiver_id' => $request->receiver_id,
+            'message' => $request->message,
         ]);
 
-        return response()->json(['success'=>true]);
+        broadcast(new SendMessage($message))->toOthers();
+
+        return response()->json($message);
     }
 
-    public function getMessages(User $user){
-        $messages = Message::where(function($q) use($user){
-            $q->where('sender_id', auth()->id())
-              ->where('receiver_id', $user->id);
-        })->orWhere(function($q) use($user){
-            $q->where('sender_id', $user->id)
-              ->where('receiver_id', auth()->id());
-        })->get();
+    public function getMessages($userId)
+    {
+        $messages = Message::where(function ($query) use ($userId) {
+            $query->where('sender_id', auth()->id())
+                ->where('receiver_id', $userId);
+        })->orWhere(function ($query) use ($userId) {
+            $query->where('sender_id', $userId)
+                ->where('receiver_id', auth()->id());
+        })
+            ->orderBy('id')
+            ->get();
 
         return response()->json($messages);
     }
+
+
 }

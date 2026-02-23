@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -7,17 +8,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-
-Route::middleware(['auth'])->group(function(){
-    Route::get('/chat', [ChatController::class,'index'])->name('chat.index');
-    Route::post('/chat/send', [ChatController::class,'sendMessage'])->name('chat.send');
-    Route::get('/chat/messages/{user}', [ChatController::class,'getMessages'])->name('chat.messages');
-});
-
+Route::get('/dashboard', [ChatController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::post('/send-message', [ChatController::class, 'sendMessage'])->middleware('auth');
+Route::get('/messages/{userId}', [ChatController::class, 'getMessages'])->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
