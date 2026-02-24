@@ -10,8 +10,10 @@ use Illuminate\Http\Request;
 class ChatController extends Controller
 {
     public function index(){
-        $users = User::where('id','!=',auth()->id())->get();
-        return view('dashboard', compact('users'));
+//        $users = User::where('id','!=',auth()->id())->get();
+//        return view('dashboard', compact('users'));
+
+        return view('dashboard.pages.index');
     }
 
     public function sendMessage(Request $request)

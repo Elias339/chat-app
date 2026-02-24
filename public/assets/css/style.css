@@ -10,35 +10,145 @@ body {
 }
 
 /*sidebar*/
-
 .sidebar {
-    background-color: #ffffff;
-    border-right: 1px solid #ddd;
+    background: #ffffff;
+    border-right: 1px solid #eaeaea;
     height: 100vh;
-    overflow-y: auto;
+}
+
+/* Profile Header */
+.profile-header {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+}
+
+.profile-img {
+    border: 3px solid white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Online Status Dot */
+.online-dot {
+    width: 12px;
+    height: 12px;
+    background: #28c76f;
+    border-radius: 50%;
+    border: 2px solid white;
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+}
+
+/* Search Box */
+.search-box {
+    position: relative;
+}
+
+.search-box i {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 8px 12px 8px 35px;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    transition: 0.3s;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #0072ff;
+    box-shadow: 0 0 0 3px rgba(0,114,255,0.15);
+}
+
+/* Contact List */
+.contact-list {
+    background: #fafafa;
 }
 
 .contact-item {
-    padding: 10px 15px;
+    padding: 12px 15px;
     cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .contact-item:hover {
-    background-color: #f0f2f5;
+    background: #e9f2ff;
+    transform: translateX(4px);
 }
 
+.contact-item.active {
+    background: #d6e9ff;
+}
+
+/* Logout Button */
 .logout-btn {
-    transition: 0.3s ease;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #ff4b5c, #ff6b81);
+    color: white;
+    border: none;
+    transition: 0.3s;
 }
 
 .logout-btn:hover {
-    background-color: #dc3545;
-    color: #fff;
+    opacity: 0.9;
 }
+
+/* Scrollbar Style */
+.contact-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.contact-list::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
 
 @media (max-width: 768px) {
     .sidebar {
         display: none;
+    }
+}
+
+/* sidebar dropdown */
+.custom-dropdown {
+    border-radius: 15px;
+    padding: 8px 0;
+    border: none;
+    min-width: 200px;
+    animation: fadeInDropdown 0.2s ease-in-out;
+}
+
+.custom-dropdown .dropdown-item {
+    padding: 8px 15px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.custom-dropdown .dropdown-item:hover {
+    background: #f1f7ff;
+    color: #0072ff;
+    transform: translateX(10px);
+    border-radius: 10px;
+}
+
+.custom-dropdown .dropdown-divider {
+    margin: 6px 0;
+}
+
+@keyframes fadeInDropdown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
