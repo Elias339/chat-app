@@ -16,7 +16,6 @@
 
 <div class="container-fluid chat-container">
     <div class="row h-100">
-
         <!-- Sidebar -->
         @include('dashboard.layouts.sidebar')
 
@@ -26,5 +25,6 @@
     </div>
 </div>
 
+@stack('scripts')
 </body>
 </html>

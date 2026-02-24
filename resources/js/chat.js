@@ -10,41 +10,57 @@ document.addEventListener('DOMContentLoaded', function () {
     let activeChat = document.getElementById('activeChat');
 
     // Select user
-    document.addEventListener('click', function(e) {
-        let userItem = e.target.closest('.user-item');
-        if (!userItem) return;
-
-        let receiverId = userItem.dataset.id;
-
-        receiverInput.value = receiverId;
-        chatUserName.innerText = userItem.dataset.name;
-        chatMessages.innerHTML = '';
-
-        // 🔥 Hide empty state
-        emptyState.classList.add('d-none');
-
-        // 🔥 Show chat
-        activeChat.classList.remove('d-none');
-        activeChat.classList.add('d-flex');
-
+    function loadMessages(receiverId) {
         fetch(`/messages/${receiverId}`)
             .then(res => res.json())
             .then(messages => {
+                chatMessages.innerHTML = '';
                 messages.forEach(msg => {
                     let messageClass = msg.sender_id == currentUserId
                         ? 'sent'
                         : 'received';
-
                     chatMessages.innerHTML += `
-                    <div class="message ${messageClass}">
-                        ${msg.message}
-                    </div>
-                `;
+                        <div class="message ${messageClass}">
+                            ${msg.message}
+                        </div>
+                    `;
                 });
-
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+                scrollToBottom();
             });
+    }
+    function scrollToBottom() {
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    document.addEventListener('click', function(e) {
+        let userItem = e.target.closest('.user-item');
+        if (!userItem) return;
+        let receiverId = userItem.dataset.id;
+
+        receiverInput.value = receiverId;
+        chatUserName.innerText = userItem.dataset.name;
+
+        emptyState.classList.add('d-none');
+        activeChat.classList.remove('d-none');
+        activeChat.classList.add('d-flex');
+
+        loadMessages(receiverId);
     });
+
+    let firstUser = document.querySelector('.user-item');
+    if (firstUser) {
+        let receiverId = firstUser.dataset.id;
+        receiverInput.value = receiverId;
+        chatUserName.innerText = firstUser.dataset.name;
+
+        emptyState.classList.add('d-none');
+        activeChat.classList.remove('d-none');
+        activeChat.classList.add('d-flex');
+        loadMessages(receiverId);
+    } else {
+        emptyState.classList.remove('d-none');
+        activeChat.classList.add('d-none');
+    }
 
     // Listen messages
     if (window.Echo) {

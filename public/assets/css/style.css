@@ -19,6 +19,7 @@ body {
 /* Profile Header */
 .profile-header {
     background: linear-gradient(135deg, #00c6ff, #0072ff);
+    padding: 10px;
 }
 
 .profile-img {
@@ -39,6 +40,10 @@ body {
 }
 
 /* Search Box */
+.search {
+    background: #fafafa;
+}
+
 .search-box {
     position: relative;
 }
@@ -78,7 +83,6 @@ body {
 
 .contact-item:hover {
     background: #e9f2ff;
-    transform: translateX(4px);
 }
 
 .contact-item.active {
@@ -164,8 +168,8 @@ body {
 
 .chat-header {
     background-color: #f0f2f5;
-    padding: 10px 15px;
-    border-bottom: 1px solid #ddd;
+    padding: 5px 15px;
+    border-radius: 0px 0px 30px 31px;
 }
 
 .chat-messages {
@@ -175,9 +179,7 @@ body {
 }
 
 .chat-input {
-    /*background-color: #949498;*/
     padding: 10px 15px;
-    border-top: 1px solid #ddd;
 }
 .chat-input-wrapper {
     display: flex;
@@ -237,7 +239,96 @@ body {
     background-color: #ffffff;
 }
 
+.last-message{
+    color: #969292;
+}
+
+.user-name{
+    color: black;
+}
+
 /*End Chat Area*/
+
+/* ================= DARK MODE ================= */
+
+body.dark-mode {
+    background-color: #111b21;
+}
+
+body.dark-mode .sidebar {
+    background-color: #202c33;
+    border-right: 1px solid #2a3942;
+}
+
+body.dark-mode .profile-header {
+    background: #2a3942;
+}
+
+body.dark-mode .contact-list {
+    background: #111b21;
+}
+
+body.dark-mode .contact-item:hover {
+    background: #2a3942;
+}
+
+body.dark-mode .contact-item.active {
+    background: #2a3942;
+}
+
+body.dark-mode .chat-area {
+    background-image: none;
+    background-color: #0b141a;
+}
+
+body.dark-mode .chat-header {
+    background-color: #202c33;
+    color: white;
+}
+
+body.dark-mode .chat-messages {
+    background-color: #0b141a;
+}
+
+body.dark-mode .chat-input-wrapper {
+    background-color: #2a3942;
+}
+
+body.dark-mode .chat-text-input {
+    color: white;
+}
+
+body.dark-mode .message.sent {
+    background-color: #005c4b;
+    color: white;
+}
+
+body.dark-mode .message.received {
+    background-color: #202c33;
+    color: white;
+}
+
+body.dark-mode .search-box input {
+    background-color: #2a3942;
+    border-color: #2a3942;
+    color: white;
+}
+
+body.dark-mode .search-box input::placeholder {
+    color: #8696a0;
+}
+
+body.dark-mode .last-message{
+    color: white;
+}
+
+body.dark-mode .user-name{
+    color: white;
+}
+
+body.dark-mode .search {
+    background: #111b21;
+}
 
 
 

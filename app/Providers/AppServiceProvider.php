@@ -13,12 +13,10 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
-
     public function boot(): void
     {
         View()->composer('dashboard.layouts.sidebar', function ($view) {
-            $users = User::where('id','!=',auth()->id())->get();
-
+            $users = User::where('id','!=',auth()->id())->with(['lastMessage'])->get();
             $view->with([
                 'users' => $users
             ]);
